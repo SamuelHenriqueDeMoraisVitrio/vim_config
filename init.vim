@@ -89,6 +89,7 @@ call plug#begin('~/.vim/plugged')
 	Plug 'honza/vim-snippets'
 	Plug 'itchyny/vim-cursorword'
 	Plug 'davidhalter/jedi-vim'
+	Plug 'ellisonleao/glow.nvim'
 
 call plug#end()
 " }}}
@@ -128,7 +129,7 @@ endif
 let g:ale_linters = {
 \  'cpp': [],
 \  'c': [],
-\   'python': ['flake8', 'pyright', 'bandit'],
+\   'python': [],
 \}
 
 let g:ale_fixers = {
@@ -140,6 +141,18 @@ let g:ale_fixers = {
 \   'html': ['xmllint --format']
 \}
 
+" Função para configurar ale_fix_on_save dependendo do tipo de arquivo
+"function! SetALEFixOnSave()
+"  if &filetype == 'cpp' || &filetype == 'c'
+"    let g:ale_fix_on_save=0
+"  else
+"    let g:ale_fix_on_save=1 " ou outra configuração padrão que você deseja
+"  endif
+"endfunction
+
+" Autocmd para chamar a função ao abrir ou criar um arquivo
+"autocmd BufRead,BufNewFile *.h,*.hpp call SetALEFixOnSave()
+
 let g:ale_fix_on_save = 1
 "}}}
 
@@ -148,7 +161,7 @@ let g:ale_fix_on_save = 1
 " COC ----------------------------------------------------------------------------------------{{{
 "
 
-let g:coc_global_extensions = ['coc-snippets', 'coc-explorer', 'coc-clangd', 'coc-cmake', 'coc-css', 'coc-html', 'coc-java', 'coc-tsserver', 'coc-json']
+let g:coc_global_extensions = ['coc-snippets', 'coc-explorer', 'coc-clangd', 'coc-cmake', 'coc-css', 'coc-html', 'coc-java', 'coc-tsserver', 'coc-json', 'coc-sumneko-lua', 'coc-psalm', 'coc-pyright', 'coc-solargraph', 'coc-rust-analyzer']
 
 " https://raw.githubusercontent.com/neoclide/coc.nvim/master/doc/coc-example-config.vim
 
